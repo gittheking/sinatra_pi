@@ -4,7 +4,7 @@ body {
   font-family: helvetica;
   font-weight: bold;
   margin-left: 1em;
-  background: url("https://drscdn.500px.org/photo/71823413/q%3D80_m%3D2000/70d5f87dea8af6e1c9bd491c947cca49");
+  background: url("https://drscdn.500px.org/photo/71823413/q%3D80_m%3D2000/70d5f87dea8af6e1c9bd491c947cca49") center;
 }
 
 .container {
@@ -13,6 +13,9 @@ body {
   margin: 0 auto;
   background-color: #222;
   opacity: 0.80;
+  position: relative;
+  top: 50%;
+  transform: translateY(25%);
 }
 
 .clock {
@@ -58,6 +61,7 @@ body {
   display: inline-block;
   line-height: 50px;
   font-size: 25px;
+  margin-left: 1em;
 }
 
 .line-456 .subway-icon {

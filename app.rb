@@ -10,7 +10,7 @@ module App
       erb :index
     end
 
-    get '/weather' do 
+    get '/weather' do
       weather = Wunderground.new(ENV["WUNDERGROUND_KEY"])
       forecast = weather.forecast_and_conditions_for(ENV["MY_ZIP_CODE"])["current_observation"]
       return_message = {
@@ -22,7 +22,7 @@ module App
       return_message.to_json
     end
 
-    get '/trains' do 
+    get '/trains' do
       subway = MTAStatus.new
       train_456 = subway.get_train('456')[0]
       train_bdfm = subway.get_train('BDFM')[0]
@@ -33,6 +33,14 @@ module App
         :train_l => { :name => train_l[:name], :status => train_l[:status] }
       }
       return_message.to_json
+    end
+
+    get '/background' do
+      url = "http://api.pexels.com/v1/search?query=nature+mountains&page=1&per_page=15"
+      pictures = HTTParty.get(url, :headers => {"Authorization" => "#{ENV["PEXELS_API_KEY"]}"})["photos"].map do |pic|
+        pic["src"]["original"]
+      end
+      pictures.to_json
     end
 
   end

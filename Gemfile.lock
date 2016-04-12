@@ -45,6 +45,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  httparty
   nokogiri
   pry
   rack

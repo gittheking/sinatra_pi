@@ -38,7 +38,7 @@ $(document).ready(function() {
     });
   };
 
-  var getTime = function() {
+  var getTheTime = function() {
     var date = new Date();
     var minutes = String(date.getMinutes());
     var hours = date.getHours();
@@ -51,7 +51,27 @@ $(document).ready(function() {
     $clock.text(hours + ':' + minutes);
   };
 
-  window.setInterval(getTrainsStatus,20000);
-  window.setInterval(getWeather,20000);
-  window.setInterval(getTime,1000);
+  var getBackground = function() {
+    $.ajax({
+      url: '/background',
+      method: 'GET',
+      dataType: 'json',
+      success: function(data) {
+        var randomImage = data[Math.floor(Math.random()*data.length)];
+        $body.css('background', 'url(' + randomImage + ')');
+        $body.css('background-size', 'cover');
+        $body.css('background-repeat', 'no-repeat');
+        // $body.css('background-position', 'center');
+      }
+    });
+  };
+
+  getBackground();
+  getTheTime();
+  getWeather();
+  getTrainsStatus();
+  window.setInterval(getTrainsStatus,200000);
+  window.setInterval(getWeather,200000);
+  window.setInterval(getTheTime,10000);
+  window.setInterval(getBackground(),60000);
 });
